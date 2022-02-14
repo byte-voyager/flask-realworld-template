@@ -1,5 +1,6 @@
 import sys
 from optparse import OptionParser
+from playhouse.flask_utils import FlaskDB
 
 import pymysql
 
