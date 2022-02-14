@@ -1,6 +1,8 @@
 ### Flask realworld template
 
-Flask project example.
+> Flask project example.
+
+![](https://raw.githubusercontent.com/Baloneo/flask-realworld-template/main/app/static/flask-logo.png)
 
 * CURD
 * HTML template
