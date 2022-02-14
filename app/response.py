@@ -1,6 +1,5 @@
 from typing import Iterable, Tuple
 
-from bson import ObjectId
 from flask import jsonify, request
 from peewee import ModelSelect
 from playhouse.shortcuts import model_to_dict

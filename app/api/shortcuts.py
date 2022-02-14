@@ -2,7 +2,6 @@
 import datetime
 
 from flask import Response, g, jsonify, request
-from mongoengine.queryset.visitor import Q
 
 from app.api.bp import V1BluePoint
 from app.ext.database.peewee_db import ms_db

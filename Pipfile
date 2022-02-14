@@ -14,7 +14,6 @@ requests = "*"
 flask-cors = "*"
 peewee = "*"
 pymysql = "*"
-flask-mongoengine = "*"
 flask-jwt-extended = "*"
 cryptography = "*"
 
