@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.douban.com/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+redis = "*"
+marshmallow = "*"
+gunicorn = "*"
+gevent = "*"
+rq = "*"
+requests = "*"
+flask-cors = "*"
+peewee = "*"
+pymysql = "*"
+flask-mongoengine = "*"
+flask-jwt-extended = "*"
+cryptography = "*"
+
+[dev-packages]
+black = "*"
+autoflake = "*"
+isort = "*"
+
+[requires]
+python_version = "3.8"

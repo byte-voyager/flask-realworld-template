@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+
+  service_5000:
+    working_dir: /service/app
+    image: py_service:2
+    restart: always
+    environment:
+      PORT: 5000
+      WORKERS: 2
+      PROD_MODE: 'Y'
+    network_mode: "host"
+    container_name: service_gunicorn_5000
+    volumes:
+      - .:/service/app
+    command: bash start.sh
+
+  service_5001:
+    working_dir: /service/app
+    image: py_service:2
+    restart: always
+    environment:
+      PORT: 5001
+      WORKERS: 2
+      PROD_MODE: 'Y'
+    network_mode: "host"
+    container_name: service_gunicorn_5001
+    volumes:
+      - .:/service/app
+    command: bash start.sh
