@@ -76,3 +76,18 @@ apt install redis
 make build-image
 docker-compose -f docker-compose.yml up -d
 ```
+
+db migrate
+```shell
+manual maintenance
+```
+
+api document
+```shell
+https://github.com/YMFE/yapi
+```
+
+connection pool
+```shell
+https://docs.peewee-orm.com/en/latest/peewee/playhouse.html#connection-pool
+```
