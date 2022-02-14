@@ -49,7 +49,7 @@ def admin_required(view_func):
         try:
             verify_jwt_in_request()
         except Exception:
-            if current_config.DEBUG:
+            if current_config.DEBUG and current_config.DEBUG_IGNORE_AUTH:
                 user: User = User.select().first()
 
                 if not user:
