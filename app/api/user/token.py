@@ -17,11 +17,13 @@ def post_token():
     password = current_schema_data.get("password")
 
     user: User = (
-        User.select(User.username, User.id).where(User.username == username).first()
+        User.select(User.username, User.id, User.password)
+        .where(User.username == username)
+        .first()
     )
 
     if not user:
-        return error_json(ResponseCode.DISPLAY_ERRMSG, "Incorrect username or password")
+        return error_json(ResponseCode.DISPLAY_ERRMSG, "No user")
 
     if not User.check_password(user.password, password):
         return error_json(ResponseCode.DISPLAY_ERRMSG, "Incorrect username or password")

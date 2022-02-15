@@ -21,7 +21,7 @@ def post_user():
     user.password = User.encode_password(password)
     user.save()
 
-    return success_json({})
+    return success_json({"id": user.id})
 
 
 @bp.route("/users/<int:mid>", methods=["DELETE"])
@@ -48,7 +48,13 @@ def get_users():
     """
     page = current_schema_data.get("page")
     size = current_schema_data.get("size")
-    count, users = help_paginate_pee(User.select(), page, size)
+    username = current_schema_data.get("username")
+
+    query_set = User.select()
+    if username:
+        query_set = query_set.where(User.username == username)
+
+    count, users = help_paginate_pee(query_set, page, size)
     return success_json(
         {
             "list": [model2dict(user, exclude=["password"]) for user in users],

@@ -69,10 +69,6 @@ def model2dict(
             # key存在则替换，不存在则新增
             model_dict[key] = value
 
-    for key in model_dict.keys():
-        if isinstance(model_dict[key], ObjectId):
-            model_dict[key] = str(model_dict[key])
-
     if callback and callable(callback):
         callback(model_dict)
 

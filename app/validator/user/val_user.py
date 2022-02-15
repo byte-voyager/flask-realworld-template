@@ -1,3 +1,5 @@
+from marshmallow import fields
+
 from ..base import BaseField, BaseSchema
 
 
@@ -9,6 +11,7 @@ class UserField(BaseField):
 class GetUserSchema(BaseSchema):
     page = BaseField.page_
     size = BaseField.size_
+    username = fields.String(load_default="", required=False)
 
 
 class PostUserSchema(BaseSchema):

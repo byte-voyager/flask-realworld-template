@@ -16,6 +16,7 @@ peewee = "*"
 pymysql = "*"
 flask-jwt-extended = "*"
 cryptography = "*"
+pytest = "*"
 
 [dev-packages]
 black = "*"

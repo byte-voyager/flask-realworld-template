@@ -2,8 +2,8 @@ import time
 import traceback
 
 from flask import Response, current_app, g, request
-from app.ext.database.peewee_db import ms_db
 
+from app.ext.database.peewee_db import ms_db
 from app.response import ResponseCode, error_json
 from config import current_config
 
@@ -110,4 +110,3 @@ def after_request(response):
 def teardown_request(response):
     if not ms_db.is_closed():
         ms_db.close()
-

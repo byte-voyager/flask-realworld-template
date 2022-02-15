@@ -11,5 +11,8 @@ lint:
 	@black .
 	@isort .
 
+test:
+	@pytest -s tests/*
+
 echo:
 	@echo ${image_name}
