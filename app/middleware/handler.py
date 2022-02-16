@@ -90,19 +90,15 @@ class bcolors:
 def after_request(response):
     if current_config.DEBUG:
         used_time = time.time() - g.start_time
-        if used_time > 0.1:
+        if used_time > 0.6:
             print(
                 f"{bcolors.WARNING}Route: {request.path}\
-               Time used: {used_time}\
-               Is-Cached: {response.headers.get('Is-Cached', False)}\
-               First-Cached: {response.headers.get('First-Cached', False)}{bcolors.ENDC}"
+               Time used: {used_time}{bcolors.ENDC}"
             )
         else:
             print(
                 f"{bcolors.OKGREEN}Route: {request.path}\
-               Time used: {used_time}\
-               Is-Cached: {response.headers.get('Is-Cached', False)}\
-               First-Cached: {response.headers.get('First-Cached', False)}{bcolors.ENDC}"
+               Time used: {used_time}{bcolors.ENDC}"
             )
     return response
 
