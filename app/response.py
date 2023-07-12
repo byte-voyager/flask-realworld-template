@@ -24,7 +24,7 @@ def model2dict(
     only: list = None,
     backrefs=False,
     replace=None,
-    recurse=True
+    recurse=True,
 ) -> dict:
     """
     将peewee模型类对象返回的单个对象转化为Dict

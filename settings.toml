@@ -12,13 +12,16 @@ date_day_format = "%y-%m-%d"
 
 jwt_secret_key = ""
 
-db.pg.name = "db_test"
-db.pg.host = "127.0.0.1"
-db.pg.port = 3306
-db.pg.user = ""
-db.pg.password = ""
+[db.pg]
+name = "db_test"
+host = "127.0.0.1"
+port = 5432
+user = "root"
+password = "123456"
 
-db.redis.user = ""
-db.redis.password = ""
-db.redis.port = 6379
+[db.redis]
+user = ""
+password = ""
+port = 6379
+host = "127.0.0.1"
 

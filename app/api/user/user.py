@@ -10,7 +10,7 @@ bp = V1BluePoint("user", url_prefix="")
 @validate_schema(val_user.PostUserSchema)
 def post_user():
     """
-    http http://localhost:8989/api/v1/users username=123 password=123456
+    http http://localhost:5002/api/users username=123 password=123456
     :return:
     """
     if User.get_or_none(User.username == current_schema_data.get("username")):
@@ -28,7 +28,7 @@ def post_user():
 @anyone_required
 def delete_user(mid):
     """
-    http DELETE http://localhost:8989/api/v1/users/1 Authorization:"Bearer $JWT"
+    http DELETE http://localhost:5002/api/users/1 Authorization:"Bearer $JWT"
     :return:
     """
     user = User.get_or_none(User.id == mid)
@@ -43,7 +43,7 @@ def delete_user(mid):
 @validate_schema(val_user.GetUserSchema)
 def get_users():
     """
-    http GET http://localhost:8989/api/v1/users Authorization:"Bearer $JWT"
+    http GET http://localhost:5002/api/users Authorization:"Bearer $JWT"
     :return:
     """
     page = current_schema_data.get("page")
@@ -68,7 +68,7 @@ def get_users():
 @validate_schema(val_user.PutUserPasswordSchema)
 def put_users_password():
     """
-    http PUT http://localhost:8989/api/v1/users/password Authorization:"Bearer $JWT"
+    http PUT http://localhost:5002/api/users/password Authorization:"Bearer $JWT"
     :return:
     """
     user_id = g.uid

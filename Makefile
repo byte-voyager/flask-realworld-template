@@ -1,4 +1,4 @@
-image_name="py_service:2"
+image_name="py_service:1"
 
 build-image:
 	docker build -t ${image_name} .
@@ -10,6 +10,3 @@ lint:
 
 test:
 	@pytest -s tests/*
-
-echo:
-	@echo ${image_name}

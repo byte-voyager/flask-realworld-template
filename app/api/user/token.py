@@ -10,7 +10,7 @@ bp = V1BluePoint("api_token", url_prefix="")
 @validate_schema(val_token.PostTokenSchema)
 def post_token():
     """
-    http http://localhost:8989/api/v1/token username=123 password=123456
+    http http://localhost:5002/api/token username=123 password=123456
     :return:
     """
     username = current_schema_data.get("username")
@@ -31,4 +31,6 @@ def post_token():
     token = create_access_token(
         identity=user.id, additional_claims={"username": username}
     )
+    for k, v in current_config.items():
+        print(k, "=", v)
     return success_json({"token": token})

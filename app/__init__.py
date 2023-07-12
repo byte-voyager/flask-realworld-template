@@ -6,6 +6,7 @@ import os
 import sys
 from logging.handlers import RotatingFileHandler
 
+from dynaconf import FlaskDynaconf
 from flask import Flask, g
 from flask.logging import default_handler
 from flask_cors import CORS
@@ -14,8 +15,6 @@ from app.api import init_app as init_api
 from app.ext import init_app as init_ext
 from app.middleware import init_middleware
 from config import current_config
-from dynaconf import FlaskDynaconf
-
 
 # http://127.0.0.1:8989/api/v1/static/1.png
 app = Flask(
@@ -70,7 +69,6 @@ class Encoder(json.JSONEncoder):
         super(Encoder, self).__init__(*args, **kwargs)
 
     def default(self, obj):
-
         if isinstance(obj, decimal.Decimal):
             return round(float(obj), current_config.DECIMAL_PLACES)
 

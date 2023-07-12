@@ -1,4 +1,4 @@
-FROM python:3.8-buster
+FROM python:3.11.3-buster
 
 COPY requirements.lock /service/
 WORKDIR /service
