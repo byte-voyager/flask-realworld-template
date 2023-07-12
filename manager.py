@@ -15,7 +15,7 @@ def create_table():
     from app.ext.database.peewee_db import pg_db
     from app.model.user import User
 
-    User.create_tables([User])
+    pg_db.create_tables([User])
 
 
 def drop_table():
@@ -71,6 +71,6 @@ def main():
 
 
 if __name__ == "__main__":
-    # main()
-    for key, value in current_config.items():           # dict like iteration
-        print(key, '=', value)
+    main()
+    # for key, value in current_config.items():           # dict like iteration
+    #     print(key, '=', value)
