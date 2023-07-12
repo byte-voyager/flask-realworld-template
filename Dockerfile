@@ -1,6 +1,6 @@
 FROM python:3.8-buster
 
-COPY requirements.txt /service/
+COPY requirements.lock /service/
 WORKDIR /service
 
 RUN printf 'deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free \n\
@@ -11,4 +11,4 @@ deb https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main con
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 && echo "Asia/Shanghai" > /etc/timezone \
 && apt-get update
-RUN pip install -i 'https://pypi.douban.com/simple' -r requirements.txt
+RUN pip install -i 'https://pypi.douban.com/simple' -r requirements.lock

@@ -10,8 +10,7 @@ class ResponseCode(object):
 
     PERMISSION_DENIED = 4001
     TOKEN_INVALID = 4002
-    DISPLAY_ERRMSG = 4003
-    HIDDEN_ERRMSG = 4004
+    ERROR = 4003
 
 
 def model2dict(

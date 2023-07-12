@@ -2,7 +2,7 @@ from flask import Blueprint
 
 
 class V1BluePoint(Blueprint):
-    URL_PREFIX_VERSION = "/api/v1"
+    URL_PREFIX_VERSION = "/api/"
 
     def __init__(
         self,

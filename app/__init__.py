@@ -14,6 +14,8 @@ from app.api import init_app as init_api
 from app.ext import init_app as init_ext
 from app.middleware import init_middleware
 from config import current_config
+from dynaconf import FlaskDynaconf
+
 
 # http://127.0.0.1:8989/api/v1/static/1.png
 app = Flask(
@@ -94,6 +96,8 @@ def create_app(config):
     _config_logger(app)
 
     CORS(app, supports_credentials=True)
+
+    FlaskDynaconf(app, dynaconf_instance=config, envvar_prefix="FLASK")
 
     from app.validator.conveter import MongoDBIDConverter, RegexConverter
 

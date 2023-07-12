@@ -1,13 +1,10 @@
 import sys
 from optparse import OptionParser
 
-import pymysql
-from playhouse.flask_utils import FlaskDB
-
 from app import create_app
 from config import current_config
 
-app = create_app(config="config.current_config")
+app = create_app(current_config)
 
 
 def runserver(port):
@@ -15,30 +12,19 @@ def runserver(port):
 
 
 def create_table():
-    conn = pymysql.connect(
-        host=current_config.MYSQL_SETTINGS["host"],
-        port=current_config.MYSQL_SETTINGS["port"],
-        user=current_config.MYSQL_SETTINGS["user"],
-        password=current_config.MYSQL_SETTINGS["password"],
-    )
-    try:
-        conn.cursor().execute(f'CREATE DATABASE {current_config.MYSQL_SETTINGS["db"]}')
-    except pymysql.err.ProgrammingError:
-        pass
-    conn.close()
-    from app.ext.database.peewee_db import ms_db
+    from app.ext.database.peewee_db import pg_db
     from app.model.user import User
 
-    ms_db.create_tables([User])
+    User.create_tables([User])
 
 
 def drop_table():
-    from app.ext.database.peewee_db import ms_db
+    from app.ext.database.peewee_db import User
     from app.model.user import User
 
     y = input("Delete all tables？y/N")
     if y == "y":
-        ms_db.drop_tables([User])
+        User.drop_tables([User])
 
 
 def main():
@@ -66,7 +52,7 @@ def main():
     parser.add_option(
         "-p",
         "--port",
-        default=8989,
+        default=5002,
         dest="port",
         help="listen port",
     )
@@ -85,4 +71,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    for key, value in current_config.items():           # dict like iteration
+        print(key, '=', value)

@@ -1,26 +1,26 @@
 from abc import ABC
 
-from peewee import MySQLDatabase
+from peewee import PostgresqlDatabase
 from playhouse.shortcuts import ReconnectMixin
 
 from config import current_config
 
 
-class ReconnectMySQLDatabase(ReconnectMixin, MySQLDatabase, ABC):
+class ReconnectPostgresqlDatabase(ReconnectMixin, PostgresqlDatabase, ABC):
     pass
 
 
-ms_db = ReconnectMySQLDatabase(
-    current_config.MYSQL_SETTINGS["db"],
-    host=current_config.MYSQL_SETTINGS["host"],
-    port=current_config.MYSQL_SETTINGS["port"],
-    user=current_config.MYSQL_SETTINGS["user"],
-    password=current_config.MYSQL_SETTINGS["password"],
+pg_db = ReconnectPostgresqlDatabase(
+    current_config.db.pg.name,
+    host=current_config.db.pg.host,
+    port=current_config.db.pg.port,
+    user=current_config.db.pg.user,
+    password=current_config.db.pg.password,
     autorollback=True,
     autoconnect=True,
     thread_safe=True,
 )
 
 if __name__ == "__main__":
-    ms_db.connect()
-    print(ms_db.is_connection_usable())
+    pg_db.connect()
+    print(pg_db.is_connection_usable())

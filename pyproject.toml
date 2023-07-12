@@ -1,0 +1,41 @@
+[project]
+name = "flask-template"
+version = "0.1.0"
+description = "Flask project template"
+authors = [
+    { name = "Baloneo", email = "alonebo.zhou@gmail.com" }
+]
+dependencies = [
+    "flask>=2.3.2",
+    "redis>=4.6.0",
+    "marshmallow>=3.19.0",
+    "gunicorn>=20.1.0",
+    "gevent>=23.7.0",
+    "rq>=1.15.1",
+    "requests>=2.31.0",
+    "flask-cors>=4.0.0",
+    "peewee>=3.16.2",
+    "flask-jwt-extended>=4.5.2",
+    "cryptography>=41.0.2",
+    "dynaconf>=3.1.12",
+    "psycopg2-binary>=2.9.6",
+]
+readme = "README.md"
+requires-python = ">= 3.11"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev_dependencies = []
+dev-dependencies = [
+    "pytest>=7.4.0",
+    "black>=23.7.0",
+    "autoflake>=2.2.0",
+    "isort>=5.12.0",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true

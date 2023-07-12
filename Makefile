@@ -1,8 +1,5 @@
 image_name="py_service:2"
 
-deps:
-	pipenv lock -r > requirements.txt
-
 build-image:
 	docker build -t ${image_name} .
 
