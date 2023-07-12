@@ -1,0 +1,13 @@
+version: "3.5"
+services:
+ postgres:
+  image: postgres:13-bullseye
+  container_name: postgres_13
+  restart: always
+  environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123456
+  ports:
+    - 5432:5432
+  volumes:
+    - /var/lib/postgresql/pgdata/data:/var/lib/postgresql/data
