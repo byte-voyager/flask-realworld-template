@@ -1,20 +1,20 @@
 from flask_jwt_extended import create_access_token
 
-from app.api.shortcuts import *
+from app.help.shortcuts import *
 from app.validator.user import val_token
 
-bp = V1BluePoint("api_token", url_prefix="")
+bp = Blueprint("api_token", __name__, url_prefix="")
 
 
 @bp.route("/token", methods=["POST"])
-@validate_schema(val_token.PostTokenSchema)
-def post_token():
+@validate()
+def post_token(schema: val_token.PostTokenSchema):
     """
     http http://localhost:5002/api/token username=123 password=123456
     :return:
     """
-    username = current_schema_data.get("username")
-    password = current_schema_data.get("password")
+    username = schema.username
+    password = schema.password
 
     user: User = (
         User.select(User.username, User.id, User.password)
@@ -23,10 +23,10 @@ def post_token():
     )
 
     if not user:
-        return error_json(ResponseCode.DISPLAY_ERRMSG, "No user")
+        return error_json(ResponseCode.ERROR, "No user")
 
     if not User.check_password(user.password, password):
-        return error_json(ResponseCode.DISPLAY_ERRMSG, "Incorrect username or password")
+        return error_json(ResponseCode.ERROR, "Incorrect username or password")
 
     token = create_access_token(
         identity=user.id, additional_claims={"username": username}

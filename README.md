@@ -4,24 +4,21 @@
 
 ![](https://raw.githubusercontent.com/Baloneo/flask-realworld-template/main/app/static/flask-logo.png)
 
-* CURD
-* HTML template
-* JWT Auth
-* Marshmallow JSON validator
-* Peewee ORM
+
+* Peewee
 * PostgreSQL
 * Redis
-* rye
-* Docker deploy
+* Poetry
 * Code formatting
 
 ### Getting started
 Download or clone this project. 
 
-Follow the instructions below(using pipenv):
+Follow the instructions below(using poetry):
 ```shell
-rye sync
+python -m venv .venv
 source .venv/bin/activate
+poetry install
 ```
 
 init database
@@ -54,6 +51,7 @@ make lint
 
 deploy
 ```shell
+poetry export -f requirements.txt --output requirements.txt
 apt install redis
 # install docker and docker-compose
 make build-image

@@ -1,24 +1,23 @@
 from flask import render_template
 
-from app.api.shortcuts import *
+from app.help.shortcuts import *
 from app.validator.user import val_user
 
-bp = V1BluePoint("user", url_prefix="")
+bp = Blueprint("user", __name__, url_prefix="")
 
 
 @bp.route("/users", methods=["POST"])
-@validate_schema(val_user.PostUserSchema)
-def post_user():
+@validate()
+def post_user(body: val_user.PostUserSchema):
     """
     http http://localhost:5002/api/users username=123 password=123456
     :return:
     """
-    if User.get_or_none(User.username == current_schema_data.get("username")):
-        return error_json(ResponseCode.DISPLAY_ERRMSG, "User name already exists")
+    if User.get_or_none(User.username == body.username):
+        return error_json(ResponseCode.ERROR, "User name already exists")
 
-    password = current_schema_data.get("password")
-    user = User(**current_schema_data)
-    user.password = User.encode_password(password)
+    user = User(**body.model_dump())
+    user.password = User.encode_password(body.password)
     user.save()
 
     return success_json({"id": user.id})
@@ -35,20 +34,20 @@ def delete_user(mid):
     if user:
         user.delete_instance()
         return success_json({})
-    return error_json(ResponseCode.DISPLAY_ERRMSG, "User not exist")
+    return error_json(ResponseCode.ERROR, "User not exist")
 
 
 @bp.route("/users", methods=["GET"])
 @anyone_required
-@validate_schema(val_user.GetUserSchema)
-def get_users():
+@validate()
+def get_users(query: val_user.GetUserSchema):
     """
     http GET http://localhost:5002/api/users Authorization:"Bearer $JWT"
     :return:
     """
-    page = current_schema_data.get("page")
-    size = current_schema_data.get("size")
-    username = current_schema_data.get("username")
+    page = query.get("page")
+    size = query.get("size")
+    username = query.get("username")
 
     query_set = User.select()
     if username:
@@ -65,8 +64,8 @@ def get_users():
 
 @bp.route("/users/password", methods=["PUT"])
 @anyone_required
-@validate_schema(val_user.PutUserPasswordSchema)
-def put_users_password():
+@validate()
+def put_users_password(body: val_user.PutUserPasswordSchema):
     """
     http PUT http://localhost:5002/api/users/password Authorization:"Bearer $JWT"
     :return:
@@ -74,8 +73,8 @@ def put_users_password():
     user_id = g.uid
     user = User.get_or_none(User.id == user_id)
     if not user:
-        return error_json(ResponseCode.DISPLAY_ERRMSG, "Please Re Login")
-    password = current_schema_data.get("password")
+        return error_json(ResponseCode.ERROR, "Please Re Login")
+    password = body.password
     user.password = User.encode_password(password)
     user.save()
     return success_json({})

@@ -11,6 +11,7 @@ class ResponseCode(object):
     PERMISSION_DENIED = 4001
     TOKEN_INVALID = 4002
     ERROR = 4003
+    PARAM_ERROR = 4004
 
 
 def model2dict(
@@ -26,17 +27,6 @@ def model2dict(
     replace=None,
     recurse=True,
 ) -> dict:
-    """
-    将peewee模型类对象返回的单个对象转化为Dict
-    :param append 需要补充填充的默认数据
-    :param exclude 需要移除的字段
-    :param delete_id 是否删除数据库ID
-    :param callback 回调，用于二次处理结果
-    :param before 在转化为字典前，要做的处理
-    :param only 只保留指定键
-    :param bool recurse: Whether foreign-keys should be recursed.
-    :param bool backrefs: Whether lists of related objects should be recursed.
-    """
 
     model_dict = model_to_dict(obj, exclude=exclude, recurse=recurse, backrefs=backrefs)
 

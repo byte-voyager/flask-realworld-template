@@ -11,11 +11,11 @@ class ReconnectPostgresqlDatabase(ReconnectMixin, PostgresqlDatabase, ABC):
 
 
 pg_db = ReconnectPostgresqlDatabase(
-    current_config.db.pg.name,
-    host=current_config.db.pg.host,
-    port=current_config.db.pg.port,
-    user=current_config.db.pg.user,
-    password=current_config.db.pg.password,
+    current_config.db_pg_name,
+    host=current_config.db_pg_host,
+    port=current_config.db_pg_port,
+    user=current_config.db_pg_user,
+    password=current_config.db_pg_password,
     autorollback=True,
     autoconnect=True,
     thread_safe=True,

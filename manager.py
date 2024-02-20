@@ -12,19 +12,19 @@ def runserver(port):
 
 
 def create_table():
-    from app.ext.database.peewee_db import pg_db
+    from app.core.database.peewee_db import pg_db
     from app.model.user import User
 
     pg_db.create_tables([User])
 
 
 def drop_table():
-    from app.ext.database.peewee_db import User
+    from app.core.database.peewee_db import pg_db
     from app.model.user import User
 
     y = input("Delete all tables？y/N")
     if y == "y":
-        User.drop_tables([User])
+        pg_db.drop_tables([User])
 
 
 def main():
@@ -72,5 +72,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    # for key, value in current_config.items():           # dict like iteration
-    #     print(key, '=', value)

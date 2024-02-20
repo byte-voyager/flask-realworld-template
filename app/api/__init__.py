@@ -1,9 +1,11 @@
 from flask import Flask
 
-from .user import init_api as init_user_api
+from app.help.bp import register_api_v1
 
-"""This module is mainly used to register blueprints"""
+from .user.token import bp as token_bp
+from .user.user import bp as user_bp
 
 
 def init_app(app: Flask):
-    init_user_api(app)
+    register_api_v1(app, token_bp)
+    register_api_v1(app, user_bp)

@@ -3,8 +3,8 @@ import functools
 from flask import g
 from flask_jwt_extended import get_jwt, get_jwt_identity, verify_jwt_in_request
 
+from app.core.response import ResponseCode, error_json
 from app.model.user import ConstUserType, User
-from app.response import ResponseCode, error_json
 from config import current_config
 
 

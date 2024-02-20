@@ -3,8 +3,8 @@ import traceback
 
 from flask import Response, current_app, g, request
 
-from app.ext.database.peewee_db import pg_db
-from app.response import ResponseCode, error_json
+from app.core.database.peewee_db import pg_db
+from app.core.response import ResponseCode, error_json
 from config import current_config
 
 
@@ -106,3 +106,7 @@ def after_request(response):
 def teardown_request(response):
     if not pg_db.is_closed():
         pg_db.close()
+
+
+def handle_validate_exception(e):
+    return error_json(ResponseCode.PARAM_ERROR, "Param Error!")

@@ -1,11 +1,11 @@
-from ..base import BaseField, BaseSchema
+from pydantic import BaseModel
 
 
-class TokenField(BaseField):
-    username = BaseField.str_max_100
-    password = BaseField.str_max_100
+class TokenField(BaseModel):
+    username: str
+    password: str
 
 
-class PostTokenSchema(BaseSchema):
-    username = TokenField.username
-    password = TokenField.password
+class PostTokenSchema(BaseModel):
+    username: str
+    password: str

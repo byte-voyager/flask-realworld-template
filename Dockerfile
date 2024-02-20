@@ -1,14 +1,9 @@
-FROM python:3.11.3-buster
+FROM python:3.12.1-bookworm
 
-COPY requirements.lock /service/
+COPY requirements-prod.txt /service/
 WORKDIR /service
 
-RUN printf 'deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free \n\
-deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-updates main contrib non-free \n\
-deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-backports main contrib non-free \n\
-deb https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main contrib non-free' > /etc/apt/sources.list
-
+#RUN sed -i 's@deb.debian.org@mirrors.tuna.tsinghua.edu.cn@g' /etc/apt/sources.list.d/debian.sources
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-&& echo "Asia/Shanghai" > /etc/timezone \
-&& apt-get update
-RUN pip install -i 'https://pypi.douban.com/simple' -r requirements.lock
+&& echo "Asia/Shanghai" > /etc/timezone
+RUN pip install -r requirements.txt

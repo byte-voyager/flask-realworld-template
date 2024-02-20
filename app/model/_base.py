@@ -2,7 +2,7 @@ import datetime
 
 from peewee import DateTimeField, Model
 
-from app.ext.database.peewee_db import pg_db
+from app.core.database.peewee_db import pg_db
 
 
 class BaseModel(Model):

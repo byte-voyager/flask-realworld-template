@@ -1,27 +1,25 @@
-from marshmallow import fields
-
-from ..base import BaseField, BaseSchema
+from pydantic import BaseModel
 
 
-class UserField(BaseField):
-    username = BaseField.username
-    password = BaseField.password
+class UserField(BaseModel):
+    username: str
+    password: str
 
 
-class GetUserSchema(BaseSchema):
-    page = BaseField.page_
-    size = BaseField.size_
-    username = fields.String(load_default="", required=False)
+class GetUserSchema(BaseModel):
+    page: int
+    size: int
+    username: str
 
 
-class PostUserSchema(BaseSchema):
-    username = UserField.username
-    password = UserField.password
+class PostUserSchema(BaseModel):
+    username: str
+    password: str
 
 
-class DeleteUserSchema(BaseSchema):
-    username = UserField.username
+class DeleteUserSchema(BaseModel):
+    username: str
 
 
-class PutUserPasswordSchema(BaseSchema):
-    password = UserField.password
+class PutUserPasswordSchema(BaseModel):
+    password: str
