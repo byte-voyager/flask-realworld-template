@@ -10,6 +10,7 @@ class ConstUserType:
 
 
 class User(BaseModel):
+    idx = AutoField()
     username = CharField(max_length=255, null=False, help_text="", unique=True)
     nickname = CharField(max_length=255, null=True, help_text="")
     password = CharField(max_length=1000, null=True, help_text="")
