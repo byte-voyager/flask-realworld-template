@@ -1,21 +1,15 @@
-from abc import ABC
-
-from peewee import PostgresqlDatabase
-from playhouse.shortcuts import ReconnectMixin
+from playhouse.pool import PooledPostgresqlExtDatabase
 
 from config import current_config
 
-
-class ReconnectPostgresqlDatabase(ReconnectMixin, PostgresqlDatabase, ABC):
-    pass
-
-
-pg_db = ReconnectPostgresqlDatabase(
+pg_db = PooledPostgresqlExtDatabase(
     current_config.db_pg_name,
     host=current_config.db_pg_host,
     port=current_config.db_pg_port,
     user=current_config.db_pg_user,
     password=current_config.db_pg_password,
+    max_connections=4,
+    stale_timeout=500,
     autorollback=True,
     autoconnect=True,
     thread_safe=True,
