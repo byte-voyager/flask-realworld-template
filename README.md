@@ -1,21 +1,16 @@
-### Flask realworld template
+### Flask project template
 
 > Flask project example.
 
 ![](https://raw.githubusercontent.com/Baloneo/flask-realworld-template/main/app/static/flask-logo.png)
 
 
-* Peewee
-* PostgreSQL
-* Redis
-* Poetry
-* Code formatting
-
 ### Getting started
 Download or clone this project. 
 
-Follow the instructions below(using poetry):
+Follow the instructions below:
 ```shell
+pip install poetry
 python -m venv .venv
 source .venv/bin/activate
 poetry install
