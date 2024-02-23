@@ -1,7 +1,6 @@
 from typing import Iterable, Tuple
 
 from flask import jsonify, request
-from peewee import ModelSelect
 from playhouse.shortcuts import model_to_dict
 
 
@@ -93,9 +92,7 @@ def get_offset(page: int, size: int) -> int:
     return (page - 1) * size
 
 
-def help_paginate_pee(
-    dataset: ModelSelect, page: int, size: int
-) -> Tuple[int, Iterable]:
+def help_paginate_pee(dataset, page: int, size: int) -> Tuple[int, Iterable]:
     if isinstance(dataset, list) and not len(dataset):
         return 0, []
 
